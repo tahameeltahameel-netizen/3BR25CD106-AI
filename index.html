@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T20 Cricket Analytics Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Load Chart.js 4.4.1 from cdnjs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-titles">
+        <h1>T20 Cricket Analytics Dashboard</h1>
+        <p class="subtitle">Performance metrics, season trends, venue dynamics, and strategic insights</p>
+      </div>
+      <div class="disclaimer-badge" role="status">
+        <span class="badge-dot"></span>
+        <span class="badge-text">Demo Data: Synthetic Dataset</span>
+      </div>
+    </header>
+
+    <!-- Filter Controls -->
+    <section class="filters-section" aria-label="Dashboard Filters">
+      <div class="filter-group">
+        <label for="filter-season">Season</label>
+        <select id="filter-season">
+          <option value="All">All Seasons</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="filter-team">Team</label>
+        <select id="filter-team">
+          <option value="All">All Teams</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="filter-venue">Venue</label>
+        <select id="filter-venue">
+          <option value="All">All Venues</option>
+        </select>
+      </div>
+
+      <div class="filter-actions">
+        <button id="reset-filters-btn" type="button" class="btn-reset">Reset Filters</button>
+      </div>
+    </section>
+
+    <!-- KPI Cards Section -->
+    <section class="kpi-grid" aria-label="Key Performance Indicators">
+      <div class="kpi-card">
+        <div class="kpi-label">Matches Played</div>
+        <div class="kpi-value" id="kpi-matches-played">-</div>
+        <div class="kpi-subtext">Total matches in selection</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Avg First Innings Score</div>
+        <div class="kpi-value" id="kpi-avg-first-innings">-</div>
+        <div class="kpi-subtext">Runs scored in 1st innings</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Powerplay Score</div>
+        <div class="kpi-value" id="kpi-avg-powerplay">-</div>
+        <div class="kpi-subtext">Overs 1 - 6 average</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Toss-Winner Win %</div>
+        <div class="kpi-value" id="kpi-toss-win-pct">-</div>
+        <div class="kpi-subtext">Matches won after toss</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">Batting-First Win %</div>
+        <div class="kpi-value" id="kpi-bat-first-win-pct">-</div>
+        <div class="kpi-subtext">Defending team victory rate</div>
+      </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section class="insights-section" aria-label="Automated Analytics Insights">
+      <h2>Strategic Insights</h2>
+      <div class="insights-content" id="insights-container">
+        <p id="insights-text">Loading insights...</p>
+      </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="charts-grid" aria-label="Analytics Visualizations">
+      <div class="chart-card">
+        <h3>Average Powerplay Score by Season</h3>
+        <div class="chart-wrapper">
+          <canvas id="chart-powerplay-season"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Average First-Innings Total by Season</h3>
+        <div class="chart-wrapper">
+          <canvas id="chart-first-innings-season"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Win % by Team</h3>
+        <div class="chart-wrapper">
+          <canvas id="chart-team-win-rate"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Batting First vs Chasing Win % by Venue</h3>
+        <div class="chart-wrapper">
+          <canvas id="chart-venue-bat-vs-chase"></canvas>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
